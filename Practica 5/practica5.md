@@ -1,6 +1,6 @@
 # Práctica 5
 
-### Ejercicio 1
+## Ejercicio 1
 Dadas las siguientes definiciones:
 
 ```
@@ -23,7 +23,7 @@ determinar el tipo de las siguientes expresiones:
 - ``chocoHelate (Vasito DulceDeLeche) ``
 - ``chocoHelate Pote``
 - ``chocoHelate (chocoHelate (Pote Frutilla))``
-### Ejercicio 2
+## Ejercicio 2
 Dado el siguiente tipo que pretende representar dígitos binarios:
 
 `data DigBin = O | I`
@@ -33,7 +33,7 @@ definir las siguientes funciones:
 - ``dbAsBool :: DigBin-> Bool``, que dado un símbolo que representa un dígito binario lo transforma en su significado como booleano.
 - ``dbOfBool :: Bool-> DigBin``, que dado un booleano lo transforma en el símbolo que representa a ese booleano.
 - ``negDB :: DigBin-> DigBin``, que dado un dígito binario lo transforma en el otro.
-### Ejercicio 3
+## Ejercicio 3
 Dado el siguiente tipo que pretende representar dígitos decimales:
 
 `data DigDec = D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9`
@@ -44,7 +44,7 @@ definir las siguientes funciones:
 - ``nextDD :: DigDec-> DigDec``, que dado un dígito decimal lo transforma en el siguiente según el orden circular dado en la definición. 
 - ``prevDD :: DigDec-> DigDec``, que dado un dígito decimal lo transforma en el anterior según el orden circular dado en la definición.
 
-### Ejercicio 4
+## Ejercicio 4
 Dado el siguiente tipo que representa medidas en un software de dibujo como LibreOffice Draw:
 
 `data Medida = Mm Float | Cm Float | Inch Float | Foot Float`
@@ -57,7 +57,7 @@ escribir las siguientes funciones:
 - ``asInch :: Medida-> Medida``, que dada una medida cualquiera la transforma en una medida en pulgadas que aproxima la dada según la conversión establecida. 
 - ``asFoot :: Medida-> Medida``, que dada una medida cualquiera la transforma en una medida en pies que aproxima la dada según la conversión establecida.
 
-### Ejercicio 5
+## Ejercicio 5
 Dadas las siguientes definiciones:
 
 ```
@@ -75,10 +75,10 @@ Determinar el tipo de las siguientes expresiones:
 - ``compose uncurry Pote ``
 - ``compose Just ``
 - ``compose uncurry (Pote Chocolate)``
-### Ejercicio 6
+## Ejercicio 6
 Para cada una de las expresiones del ejercicio anterior que denoten funciones, construir una expresión aplicándola.
 
-### Ejercicio 7
+## Ejercicio 7
 Dado el tipo Set definido en la clase teórica
 
 `data Set a = S (a -> Bool)`
@@ -90,7 +90,7 @@ definir las siguientes funciones sobre él:
 - ``union :: Set a-> Set a-> Set a``, que dados dos conjuntos, describe al conjunto que resulta de la unión de ambos. 
 - ``intersection :: Set a-> Set a-> Set a``, que dados dos conjuntos, describe al conjunto que resulta de la intersección de ambos.
 
-### Ejercicio 8
+## Ejercicio 8
 Dados los siguientes tipos que modelan los posibles resultados de computar con excepciones:
 
 ```

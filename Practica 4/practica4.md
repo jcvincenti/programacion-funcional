@@ -1,6 +1,6 @@
 # Práctica 4
 
-### Ejercicio 1
+## Ejercicio 1
 Determinar si las siguientes funciones son parciales o totales. Justificar. 
 
 - `udiv (x,y) = div x y` 
@@ -30,10 +30,10 @@ Determinar si las siguientes funciones son parciales o totales. Justificar.
         then conTildePM c
         else c 
 
-### Ejercicio 2
+## Ejercicio 2
 Para cada una de las funciones del ejercicio anterior, determinar si una o más de las otras es equivalente a ella.
 
-### Ejercicio 3
+## Ejercicio 3
 Dada la siguiente definición para la función twice:
 
 `twice = \f -> \x -> f (f x)`
@@ -43,7 +43,7 @@ Determinar cuántos y cuáles son los redexes en las siguientes expresiones.
 - ``twice doble 2``
 - ``twice``
 
-### Ejercicio 4
+## Ejercicio 4
 Dada la siguiente definición para la función twice:
 
 `twice f = g where g x = f (f x)`
@@ -53,7 +53,7 @@ Determinar cuántos y cuáles son los redexes en las siguientes expresiones.
 - ``twice doble 2``
 - ``twice``
 
-### Ejercicio 5
+## Ejercicio 5
 Dada la siguiente definición para la función twice:
 
 `twice f x = f (f x)`
@@ -63,7 +63,7 @@ Determinar cuántos y cuáles son los redexes en las siguientes expresiones.
 - ``twice doble 2``
 - ``twice``
 
-### Ejercicio 6
+## Ejercicio 6
 Para cada tipo a continuación, intentar dar dos expresiones que denoten valores diferentes. Las expresiones deben ser diferentes de bottom, y en el caso de ser funciones, una debe ser total y otra debe ser parcial. De no ser posible hacer alguno de los casos, explicar por qué.
 
 - `a`

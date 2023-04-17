@@ -20,3 +20,5 @@ uncurry' = \f -> \(x, y) -> f x y
 apply = \f -> \x -> f x
 swapC' = curry' swap
 swap' = uncurry' swapC
+fst = \(a, b) -> a
+snd = \(a, b) -> b
