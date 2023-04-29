@@ -1,5 +1,4 @@
--- Seccion 1
-
+--------------------------------------------- Seccion 1 ---------------------------------------------
 data Pizza = Prepizza | Capa Ingrediente Pizza deriving (Show, Eq)
 data Ingrediente = Aceitunas Int | Anchoas | Cebolla | Jamón | Queso | Salsa deriving (Show, Eq)
 
@@ -71,7 +70,87 @@ juntarAceitunas :: Ingrediente -> Pizza -> Pizza
 juntarAceitunas (Aceitunas n) (Capa (Aceitunas m) p) = Capa (Aceitunas (n+m)) p
 juntarAceitunas i p = Capa i p
 
--- Seccion 2
+-- Ejercicio 4
+-- Demostrar:
+
+-- a) cantidadDeAceitunas Prepizza = cantidadDeAceitunas (conDescripcionMejorada Prepizza)
+-- lado izq
+-- cantidadDeAceitunas Prepizza
+-- 0
+
+-- lado der
+-- cantidadDeAceitunas (conDescripcionMejorada Prepizza)
+-- cantidadDeAceitunas Prepizza
+-- 0
+
+-- b) cantidadDeAceitunas (Capa Queso Prepizza) = cantidadDeAceitunas (conDescripcionMejorada (Capa Queso Prepizza))
+-- lado izq
+-- cantidadDeAceitunas (Capa Queso Prepizza)
+-- doCantidadDeAceitunas Queso + cantidadDeAceitunas Prepizza
+-- 0 + cantidadDeAceitunas Prepizza
+-- 0 + 0
+-- 0
+
+-- lado der
+-- cantidadDeAceitunas (conDescripcionMejorada (Capa Queso Prepizza))
+-- cantidadDeAceitunas (juntarAceitunas Queso (conDescripcionMejorada Prepizza))
+-- cantidadDeAceitunas (juntarAceitunas Queso Prepizza)
+-- cantidadDeAceitunas (Capa Queso Prepizza)
+-- doCantidadDeAceitunas Queso + cantidadDeAceitunas Prepizza
+-- 0 + cantidadDeAceitunas Prepizza
+-- 0 + 0
+-- 0
+
+-- c) cantidadDeAceitunas (Capa (Aceitunas 8) (Capa Queso Prepizza))
+--      = cantidadDeAceitunas (conDescripcionMejorada (Capa (Aceitunas 8) (Capa Queso Prepizza)))
+
+-- lado izq
+-- cantidadDeAceitunas (Capa (Aceitunas 8) (Capa Queso Prepizza))
+-- doCantidadDeAceitunas (Aceitunas 8) + cantidadDeAceitunas (Capa Queso Prepizza)
+-- 8 + cantidadDeAceitunas (Capa Queso Prepizza)
+-- 8 + doCantidadDeAceitunas Queso + cantidadDeAceitunas Prepizza
+-- 8 + 0 + cantidadDeAceitunas Prepizza
+-- 8 + 0 + 0
+-- 8
+
+-- lado der
+-- cantidadDeAceitunas (conDescripcionMejorada (Capa (Aceitunas 8) (Capa Queso Prepizza)))
+-- cantidadDeAceitunas (juntarAceitunas (Aceitunas 8) (conDescripcionMejorada (Capa Queso Prepizza)))
+-- cantidadDeAceitunas (Capa (Aceitunas 8) (Capa Queso Prepizza))
+-- doCantidadDeAceitunas (Aceitunas 8) + cantidadDeAceitunas (Capa Queso Prepizza)
+-- 8 + doCantidadDeAceitunas Queso + cantidadDeAceitunas Prepizza
+-- 8 + 0 + cantidadDeAceitunas Prepizza
+-- 8 + 0 + 0
+-- 8
+
+-- d) cantidadDeAceitunas (Capa (Aceitunas 9) (Capa (Aceitunas 8) (Capa Queso Prepizza)))
+--      = cantidadDeAceitunas (conDescripcionMejorada (Capa (Aceitunas 9) (Capa (Aceitunas 8) (Capa Queso Prepizza))))
+
+-- lado izq
+-- cantidadDeAceitunas (Capa (Aceitunas 9) (Capa (Aceitunas 8) (Capa Queso Prepizza)))
+-- doCantidadDeAceitunas (Aceitunas 9) + cantidadDeAceitunas (Capa (Aceitunas 8) (Capa Queso Prepizza))
+-- 9 + doCantidadDeAceitunas (Aceitunas 8) + cantidadDeAceitunas (Capa Queso Prepizza)
+-- 9 + 8 + doCantidadDeAceitunas Queso + cantidadDeAceitunas Prepizza
+-- 9 + 8 + 0 + cantidadDeAceitunas Prepizza
+-- 9 + 8 + 0 + 0
+-- 17
+
+-- lado der
+-- cantidadDeAceitunas (conDescripcionMejorada (Capa (Aceitunas 9) (Capa (Aceitunas 8) (Capa Queso Prepizza))))
+-- cantidadDeAceitunas (juntarAceitunas (Aceitunas 9) (conDescripcionMejorada (Capa (Aceitunas 8) (Capa Queso Prepizza))))
+-- cantidadDeAceitunas (juntarAceitunas (Aceitunas 9) (juntarAceitunas (Aceitunas 8) (conDescripcionMejorada (Capa Queso Prepizza))))
+-- cantidadDeAceitunas (juntarAceitunas (Aceitunas 9) (juntarAceitunas (Aceitunas 8) (juntarAceitunas Queso (conDescripcionMejorada Prepizza))))
+-- cantidadDeAceitunas (juntarAceitunas (Aceitunas 9) (juntarAceitunas (Aceitunas 8) (juntarAceitunas Queso Prepizza)))
+-- cantidadDeAceitunas (juntarAceitunas (Aceitunas 9) (juntarAceitunas (Aceitunas 8) (Capa Queso Prepizza)))
+-- cantidadDeAceitunas (juntarAceitunas (Aceitunas 9) (Capa (Aceitunas 8) (Capa Queso Prepizza)))
+-- cantidadDeAceitunas (Capa (Aceitunas 9 + 8) (Capa Queso Prepizza)))
+-- cantidadDeAceitunas (Capa (Aceitunas 17) (Capa Queso Prepizza)))
+-- doCantidadDeAceitunas (Aceitunas 17) + cantidadDeAceitunas (Capa Queso Prepizza))
+-- 17 + doCantidadDeAceitunas Queso + cantidadDeAceitunas Prepizza
+-- 17 + 0 + cantidadDeAceitunas Prepizza
+-- 17 + 0 + 0
+-- 17
+--------------------------------------------- Seccion 2 ---------------------------------------------
 -- Ejercicio 3
 type Nombre = String
 data Planilla = Fin | Registro Nombre Planilla deriving (Show, Eq)
@@ -109,7 +188,7 @@ esta n (Registro n2 p) = n == n2 || esta n p
 
 -- juntarPlanillas, que toma dos planillas y genera una unica planilla con los registros de ambas planillas
 juntarPlanillas :: Planilla -> Planilla -> Planilla
-juntarPlanillas Fin r = r
+juntarPlanillas Fin p = p
 juntarPlanillas (Registro n p1) p2 = Registro n (juntarPlanillas p1 p2)
 
 -- nivelesJerarquicos, que describe la cantidad de niveles jerarquicos de un equipo dado
@@ -129,7 +208,96 @@ planillaDeIntegrantes (Becario n) = Registro n Fin
 planillaDeIntegrantes (Investigador n e1 e2 e3) = Registro n (juntarPlanillas (planillaDeIntegrantes e1) (juntarPlanillas (planillaDeIntegrantes e2) (planillaDeIntegrantes e3)))
 -- planillaDeIntegrantes (Investigador n e1 e2 e3) = Registro n (planillaDeIntegrantes e1 `juntarPlanillas` planillaDeIntegrantes e2 `juntarPlanillas` planillaDeIntegrantes e3)
 
--- Seccion 3
+
+-- Ejercicio 4
+-- Demostrar:
+
+-- a) para todo p :: Planilla. largoDePlanilla (juntarPlanillas Fin p) = largoDePlanilla Fin + largoDePlanilla p
+
+-- Lado izq
+-- largoDePlanilla (juntarPlanillas Fin p)
+-- largoDePlanilla p
+
+-- Lado der
+-- largoDePlanilla Fin + largoDePlanilla p
+-- 0 + largoDePlanilla p
+-- largoDePlanilla p
+
+-- b) para todo p :: Planilla. largoDePlanilla (juntarPlanillas (Registro "Edsger" Fin) p) = largoDePlanilla (Registro "Edsger" Fin) + largoDePlanilla p
+
+-- Lado izq
+-- largoDePlanilla (juntarPlanillas (Registro "Edsger" Fin) p)
+-- largoDePlanilla (Registro "Edsger" (juntarPlanillas Fin p))
+-- largoDePlanilla (Registro "Edsger" p)
+-- 1 + largoDePlanilla p
+
+-- Lado der
+-- largoDePlanilla (Registro "Edsger" Fin) + largoDePlanilla p
+-- 1 + largoDePlanilla Fin + largoDePlanilla p
+-- 1 + 0 + largoDePlanilla p
+-- 1 + largoDePlanilla p
+
+-- c) para todo p :: Planilla
+-- largoDePlanilla (juntarPlanillas (Registro "Alan" (Registro "Edsger" Fin )) p) = largoDePlanilla (Registro "Alan" (Registro "Edsger" Fin )) + largoDePlanilla p
+
+-- Lado izq
+-- largoDePlanilla (juntarPlanillas (Registro "Alan" (Registro "Edsger" Fin )) p)
+-- largoDePlanilla (Registro "Alan" (juntarPlanillas (Registro "Edsger" Fin ) p))
+-- largoDePlanilla (Registro "Alan" (Registro "Edsger" (juntarPlanillas Fin p)))
+-- largoDePlanilla (Registro "Alan" (Registro "Edsger" p))
+-- 1 + largoDePlanilla (Registro "Edsger" p)
+-- 1 + 1 + largoDePlanilla p
+-- 2 + largoDePlanilla p
+
+-- Lado der
+-- largoDePlanilla (Registro "Alan" (Registro "Edsger" Fin)) + largoDePlanilla p
+-- 1 + largoDePlanilla (Registro "Edsger" Fin) + largoDePlanilla p
+-- 1 + 1 + largoDePlanilla Fin + largoDePlanilla p
+-- 1 + 1 + 0 + largoDePlanilla p
+-- 2 + largoDePlanilla p
+
+-- Ejercicio 5
+-- Demostrar:
+
+-- a) largoDePlanilla (planillaDeIntegrantes (Becario "Alan")) = cantidadDeIntegrantes (Becario "Alan")
+
+-- lado izq
+-- largoDePlanilla (planillaDeIntegrantes (Becario "Alan"))
+-- largoDePlanilla (Registro "Alan" Fin)
+-- 1 + largoDePlanilla Fin
+-- 1 + 0
+-- 1
+
+-- lado der
+-- cantidadDeIntegrantes (Becario "Alan")
+-- 1
+
+-- d) largoDePlanilla (planillaDeIntegrantes (Investigador "Alonzo" (Becario "Alan") (Becario "Alfred") (Becario "Stephen")))
+--      = cantidadDeIntegrantes (Investigador "Alonzo" (Becario "Alan") (Becario "Alfred") (Becario "Stephen"))
+
+-- lado izq
+-- largoDePlanilla (planillaDeIntegrantes (Investigador "Alonzo" (Becario "Alan") (Becario "Alfred") (Becario "Stephen")))
+-- largoDePlanilla (Registro "Alonzo" (juntarPlanillas (planillaDeIntegrantes (Becario "Alan")) (juntarPlanillas (planillaDeIntegrantes (Becario "Alfred")) (planillaDeIntegrantes (Becario "Stephen")))))
+-- largoDePlanilla (Registro "Alonzo" (juntarPlanilla (Registro "Alan" Fin) (juntarPlanillas (Registro "Alfred" Fin) (Registro "Stephen" Fin) )))
+-- largoDePlanilla (Registro "Alonzo" (juntarPlanilla (Registro "Alan" Fin) (Registro "Alfred" (juntarPlanillas Fin (Registro "Stephen" Fin) )))
+-- largoDePlanilla (Registro "Alonzo" (juntarPlanilla (Registro "Alan" Fin) (Registro "Alfred" (Registro "Stephen" Fin)) ))
+-- largoDePlanilla (Registro "Alonzo" (Registro "Alan" (juntarPlanilla Fin (Registro "Alfred" (Registro "Stephen" Fin) ))))
+-- largoDePlanilla (Registro "Alonzo" (Registro "Alan" (Registro "Alfred" (Registro "Stephen" Fin))))
+-- 1 + largoDePlanilla (Registro "Alan" (Registro "Alfred" (Registro "Stephen" Fin)))
+-- 1 + 1 + largoDePlanilla (Registro "Alfred" (Registro "Stephen" Fin))
+-- 1 + 1 + 1 + largoDePlanilla (Registro "Stephen" Fin)
+-- 1 + 1 + 1 + 1 + largoDePlanilla Fin
+-- 1 + 1 + 1 + 1 + 0
+-- 4
+
+-- lado der
+-- cantidadDeIntegrantes (Investigador "Alonzo" (Becario "Alan") (Becario "Alfred") (Becario "Stephen"))
+-- 1 + cantidadDeIntegrantes (Becario "Alan") + cantidadDeIntegrantes (Becario "Alfred") + cantidadDeIntegrantes (Becario "Stephen")
+-- 1 + 1 + cantidadDeIntegrantes (Becario "Alfred") + cantidadDeIntegrantes (Becario "Stephen")
+-- 1 + 1 + 1 + cantidadDeIntegrantes (Becario "Stephen")
+-- 1 + 1 + 1 + 1
+-- 4
+--------------------------------------------- Seccion 3 ---------------------------------------------
 -- Ejercicio 3
 
 data Dungeon a = Habitacion a | Pasaje (Maybe a) (Dungeon a) | Bifurcacion (Maybe a) (Dungeon a) (Dungeon a) deriving (Show, Eq)
