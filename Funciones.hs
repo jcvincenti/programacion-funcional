@@ -22,3 +22,5 @@ swapC' = curry' swap
 swap' = uncurry' swapC
 fst = \(a, b) -> a
 snd = \(a, b) -> b
+many 0 f x = x
+many n f x = f (many (n-1) f x)

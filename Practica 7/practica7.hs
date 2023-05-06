@@ -1,13 +1,28 @@
 --------------------------------------------- Seccion 1 ---------------------------------------------
 data Pizza = Prepizza | Capa Ingrediente Pizza deriving (Show, Eq)
-data Ingrediente = Aceitunas Int | Anchoas | Cebolla | Jamón | Queso | Salsa deriving (Show, Eq)
+data Ingrediente = Aceitunas Int | Anchoas | Cebolla | Jamón | Queso | Salsa | MezclaRara deriving (Show, Eq)
+
+-- Ejercicio 1
+
+-- Pizza es un conjunto inductivo con las siguientes reglas:
+
+-- Caso base:
+-- - Prepizza está en el conjunto Pizza
+-- Caso inductivo:
+-- - Sea i un Ingrediente y p una Pizza, Capa i p está en el conjunto Pizza
+
+-- Ingrediente es un conjunto donde sus elementos son:
+-- Sea n un Int, Aceituas n es un Ingrediente
+-- Jamon es un Ingrediente
+-- Queso es un Ingrediente
+-- Salsa es un Ingrediente
 
 pizza1 = Capa (Aceitunas 2) Prepizza
 pizza2 = Capa (Aceitunas 2) (Capa (Aceitunas 4) Prepizza)
 -- Ejercicio 2
 
 -- f Prepizza = ...
--- f (Capa i p) = ... f p ...
+-- f (Capa i p) = ... f p
 
 -- Ejercicio 3
 
@@ -19,23 +34,22 @@ cantidadDeCapas (Capa i p) = 1 + cantidadDeCapas p
 -- cantidadDeAceitunas, que describe la cantidad de aceitunas que hay en una pizza dada.
 cantidadDeAceitunas :: Pizza -> Int
 cantidadDeAceitunas Prepizza = 0
-cantidadDeAceitunas (Capa i p) = doCantidadDeAceitunas i + cantidadDeAceitunas p
+cantidadDeAceitunas (Capa i p) = aceitunas i + cantidadDeAceitunas p
 
-doCantidadDeAceitunas :: Ingrediente -> Int
-doCantidadDeAceitunas (Aceitunas cant) = cant
-doCantidadDeAceitunas _ = 0
-
+aceitunas :: Ingrediente -> Int
+aceitunas (Aceitunas cant) = cant
+aceitunas _ = 0
 
 -- duplicarAceitunas, que dada una pizza, describe otra pizza de forma tal que se cumpla la siguiente propiedad:
 --  para todo p. cantidadDeAceitunas (duplicarAceitunas p) = 2 * cantidadDeAceitunas p
 
 duplicarAceitunas :: Pizza -> Pizza
-duplicarAceitunas (Capa i p) = Capa (doDuplicarAceitunas i) (duplicarAceitunas p)
-duplicarAceitunas p = p
+duplicarAceitunas (Capa i p) = Capa (duplicarSiAceitunas i) (duplicarAceitunas p)
+duplicarAceitunas Prepizza = Prepizza
 
-doDuplicarAceitunas :: Ingrediente -> Ingrediente
-doDuplicarAceitunas (Aceitunas cant) = Aceitunas (cant*2)
-doDuplicarAceitunas i = i
+duplicarSiAceitunas :: Ingrediente -> Ingrediente
+duplicarSiAceitunas (Aceitunas cant) = Aceitunas (cant*2)
+duplicarSiAceitunas i = i
 
 -- sinLactosa, que describe la pizza resultante de remover todas las capas de queso de una pizza dada.
 pizza3 = Capa (Aceitunas 2) (Capa Queso Prepizza)
@@ -47,17 +61,17 @@ pizza7 = Capa Queso (Capa (Aceitunas 4) (Capa (Aceitunas 4) (Capa (Aceitunas 4) 
 
 
 sinLactosa :: Pizza -> Pizza
+sinLactosa Prepizza = Prepizza
 sinLactosa (Capa Queso p) = sinLactosa p
 sinLactosa (Capa i p) = Capa i (sinLactosa p)
-sinLactosa p = p
 
 -- aptaIntolerantesLactosa, que indica si la pizza dada no tiene queso, osea se cumple la siguiente propiedad:
 --      para todo p.  si aptaIntolerantesLactosa p = True entonces p = sinLactosa p 
 
 aptaIntolerantesLactosa :: Pizza -> Bool
+aptaIntolerantesLactosa Prepizza = True
 aptaIntolerantesLactosa (Capa Queso p) = False
-aptaIntolerantesLactosa (Capa i p) = True && aptaIntolerantesLactosa p
-aptaIntolerantesLactosa p = True
+aptaIntolerantesLactosa (Capa i p) = aptaIntolerantesLactosa p
 
 -- conDescripcionMejorada, que toma una pizza y otra que se construyó con exactamente los mismos ingredientes 
 -- pero donde no se agregan aceitunas dos veces seguidas.
@@ -69,6 +83,19 @@ conDescripcionMejorada (Capa i p) = juntarAceitunas i (conDescripcionMejorada p)
 juntarAceitunas :: Ingrediente -> Pizza -> Pizza
 juntarAceitunas (Aceitunas n) (Capa (Aceitunas m) p) = Capa (Aceitunas (n+m)) p
 juntarAceitunas i p = Capa i p
+
+juntarPizzas :: Pizza -> Pizza -> Pizza
+juntarPizzas Prepizza pz = pz
+juntarPizzas (Capa i p) pz = Capa i (juntarPizzas p pz)
+
+combinarIngredientes :: Ingrediente -> Ingrediente -> Ingrediente
+combinarIngredientes (Aceitunas n) (Aceitunas m) = Aceitunas (n+m)
+combinarIngredientes i i2 = MezclaRara
+
+combinarIngredientesPorCapa :: Pizza -> Pizza -> Pizza
+combinarIngredientesPorCapa Prepizza pz = pz
+combinarIngredientesPorCapa pz Prepizza = pz
+combinarIngredientesPorCapa (Capa i1 pz1) (Capa i2 pz2) = Capa (combinarIngredientes i1 i2) (combinarIngredientesPorCapa pz1 pz2)
 
 -- Ejercicio 4
 -- Demostrar:
