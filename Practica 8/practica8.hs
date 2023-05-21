@@ -1,4 +1,3 @@
-import Language.Haskell.TH (Exp)
 -- Seccion 1
 
 -- Ejercicio 1
@@ -200,14 +199,16 @@ int2N i = S (int2N (i-1))
 -- HI: evalN (addN n n2) = evalN n + evalN n2
 -- TI: ¿evalN (addN (S Z) n2) = evalN (S Z) + evalN n2?
 
--- Dem: Caso base: n1 = Z. ¿evalN (addN Z n2) = evalN Z + evalN n2?
+-- Desarrollo
+
+-- Caso base
 --  evalN (addN Z n2)                   |   evalN Z + evalN n2
 -- =                     (addN)         | =                     (evalN)
 --  evalN n2                            |   0 + evalN n2
 --                                      | =                     (aritm)
 --                                      |   evalN n2
 
--- Dem: Caso inductivo: n1 = S n. ¿evalN (addN (S n) n2) = evalN (S n) + evalN n2?
+-- Caso inductivo
 --  evalN (addN (S n) n2)               |   evalN (S n) + evalN n2
 -- =                     (addN)         | =                     (evalN)
 --  evalN (S (addN n n2))               |   1 + evalN n + evalN n2
@@ -227,14 +228,16 @@ int2N i = S (int2N (i-1))
 -- HI: evalN (prodN n n2) = evalN n * evalN n2
 -- TI: ¿evalN (prodN (S Z) n2) = evalN (S Z) * evalN n2?
 
--- Dem: Caso base: n1 = Z. ¿evalN (prodN Z n2) = evalN Z * evalN n2?
+-- Desarrollo
+
+-- Caso base
 --  evalN (prodN Z n2)                   |   evalN Z * evalN n2
 -- =                     (prodN)         | =                     (evalN)
 --  evalN Z                              |   0 * evalN n2
 -- =                     (evalN)         | =                     (aritm)
 --  0                                    |   0
 
--- Dem: Caso inductivo: n1 = S n. ¿evalN (prodN (S Z) n2) = evalN (S Z) * evalN n2?
+-- Caso inductivo
 --  evalN (prodN (S n) n2)               |   evalN (S n) * evalN n2
 -- =                     (prodN)         | =                     (evalN)
 --  evalN (addN n2 (prodN n n2))         |   (1 + evalN n) * evalN n2
@@ -259,14 +262,15 @@ int2N i = S (int2N (i-1))
 -- HI: int2N (evalN n) = id n
 -- TI: ¿int2N (evalN (S n)) = id (S n)?
 
--- Dem: Caso base: n1 = Z. ¿int2N (evalN Z) = id Z?
+-- Desarrollo
+-- Caso base
 --  int2N (evalN Z)                      |   id Z
 -- =                     (evalN)         | =                     (id)
 --  int2N 0                              |   Z
 -- =                     (int2N)         |
 --  Z                                    |
 
--- Dem: Caso inductivo: n1 = S n. ¿int2N (evalN (S n)) = id (S n)?
+-- Caso inductivo
 --  int2N (evalN (S n))                  |   id (S n)
 -- =                     (evalN)         | =                     (id)
 --  int2N (1 + evalN n)                  |   S n
@@ -285,14 +289,16 @@ int2N i = S (int2N (i-1))
 -- HI: evalN (int2N x) = id x
 -- TI: ¿evalN (int2N x) = id x?
 
--- Dem: Caso base: n = 0. ¿evalN (int2N 0) = id 0?
+-- Desarrollo
+
+-- Caso base
 --  evalN (int2N 0)                      |   id 0
 -- =                     (int2N)         | =                     (id)
 --  evalN Z                              |   0
 -- =                     (evalN)         |
 --  0                                    |
 
--- Dem: Caso inductivo: n = x. ¿evalN (int2N x) = id x?
+-- Caso inductivo
 --  evalN (int2N x)                      |   id x
 -- =                     (int2N)         | =                     (id)
 --  evalN (S (int2N (x-1)))              |   x
