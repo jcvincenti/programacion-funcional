@@ -196,7 +196,7 @@ int2N i = S (int2N (i-1))
 -- ¿evalN (addN Z n2) = evalN Z + evalN n2?
 
 -- Caso inductivo: n1 = S n
--- HI: evalN (addN n n2) = evalN n + evalN n2
+-- HI: evalN (addN n1 n2) = evalN n1 + evalN n2
 -- TI: ¿evalN (addN (S Z) n2) = evalN (S Z) + evalN n2?
 
 -- Desarrollo
