@@ -29,7 +29,7 @@ uflip f = g
 -- twice doble :: Num a => a -> a
 -- twice twice :: (a -> a) -> a -> a
 -- twice uflip :: ((a, a) -> c) -> (a, a) -> c
--- twice swap :: (a, a) -> (a -> a)
+-- twice swap :: (a, a) -> (a, a)
 -- uflip swap :: (a, b) -> (a, b)
 -- (twice twice) swap :: (b, b) -> (b, b)
 
