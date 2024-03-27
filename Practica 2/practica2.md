@@ -5,7 +5,6 @@ Indicar los tipos de las siguientes definiciones:
 
 - `first (x,y) = x`
 - `apply f = g where g x = f x`
-
 - `twice f = g where g x = f (f x)`
 - `doble x = x + x`
 - `swap (x, y) = (y, x)`

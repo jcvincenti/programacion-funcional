@@ -60,7 +60,7 @@ subst :: (a -> (b -> c)) -> ((a -> b) -> (a -> c))
 -- Ejercicio 4
 -- Para cada una de las siguientes expresiones decidir si poseen tipo. Si es así indicar cuál es.
 
--- 1 && 2 == 2 :: Bool
+-- 1 && 2 == 2 :: No tiene tipo
 -- 1 + if 3 < 5 then 3 else 5 :: Int
 -- let par = (True, 4) in (if first par then first par else second par) :: No tiene tipo
 -- (doble doble) 5 :: No tiene tipo

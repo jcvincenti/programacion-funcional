@@ -1,7 +1,7 @@
 # Práctica 3
 
 ## Ejercicio 1
-Definir funciones: 
+Definir funciones:
 1. `curry :: ((a,b) -> c) -> a -> b -> c`
 2. `uncurry :: (a -> b -> c) -> (a,b) -> c`
 
@@ -18,8 +18,7 @@ Reescribir las siguientes definiciones sin utilizar where , let o lambdas, y uti
 - `apply f = g where g x = f x`
 - `twice f = g where g x = f (f x)`
 - `id = \x -> x`
-- `flip f = g where g x = h`
-- `y = (f y) x`
+- `flip f = g where g x = h where h y = (f y) x`
 - `uflip f = g where g p = f (swap p)`
 - `const = \x -> (\y -> x)`
 - `compose = \f -> (\g -> (\x -> f (g x)))`
